@@ -1,0 +1,16 @@
+:root{
+    --primary-green: #B3e4ca;
+    --primary-light: #f4f3f4;
+    --light-blue: #c6e2ff;
+    --pink: #ffc8cd;
+    --yellow: #f4d862;
+}
+
+.title-bar {
+    background-color: var(--primary-green);
+}
+
+.body {
+    height: 100vh;
+    background-color: var(--yellow);
+}
