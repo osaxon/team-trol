@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
+        <link rel="stylesheet" href="style.css">
+        <title>Wish We Were There</title>
+</head>
+<body>
+ 
+    <a href="#" data-open="modal-1" class="radius button">Let's Shoot</a>
+  
+    <div id="modal-1" class="large reveal" data-reveal>
+      <h2>Choose your destination</h2>
+
+      <h4>Search for your location</h4>
+
+      <button class="button" data-open="modal-2">Next</button>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    <div id="modal-2" class="large reveal" data-reveal>
+        <h2>Take your selfie</h2>
+        <button class="button" data-open="modal-3">Next</button>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+
+      <div id="modal-3" class="large reveal" data-reveal>
+        <h2>Here's your composite image</h2>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+       
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/vendor/what-input.min.js"></script>
+    <script>$(document).foundation();</script>
+  </body>
+</html>
+
