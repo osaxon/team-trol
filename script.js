@@ -37,19 +37,18 @@ console.log("Hello World");
 
 
 function loadImage(){
-    console.log("load image")
     var img = new Image();
     img.onload = drawImg;
     img.src = URL.createObjectURL(this.files[0]);
 };
 
 function drawImg() {
-    console.log("hello")
     var canvas = document.getElementById('usrImgCanvas')
     var ctx = canvas.getContext("2d");
     canvas.width = this.width;
     canvas.height = this.height;
     ctx.drawImage(this, 0,0);
 };
+
 
 $('#imgUploader').on("change", loadImage)
