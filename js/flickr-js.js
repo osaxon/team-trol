@@ -3,10 +3,14 @@ const OPEN_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?q={cit
 
 const AMADEUS_POI_URL = 'https://api.amadeus.com/v1/reference-data/locations/pois?latitude={latitude}&longitude={longitude}&radius=1&page%5Blimit%5D=10&page%5Boffset%5D=0';
 const AMADEUS_API_KEY =  'IqyzmmsnOGa7H8cAlG1k6YqzQTF5';
+const AMADEUS_TOKEN_URL = "https://api.amadeus.com/v1/security/oauth2/token";
+const AMADEUS_CLIENT_ID = 'JOvXUOY3OX69sVGTnojMRj8zUMDLhd04';
+const AMADEUS_CLIENT_SECRET = 'jAceA5FwC0oePI4c';
 
 const FLICKR_API_KEY = 'd21c44465e491207d604a059d71668d6';
 const FLICKR_API_URL = 'https://www.flickr.com/services/rest?method=flickr.photos.search&api_key='
                        + FLICKR_API_KEY + '&lat={latitude}&lon={longitude}&format=json&safe_search=1&per_page=5&page=1&nojsoncallback=1';
+
 
 $("button").click(function() {
     console.log('Here');
@@ -23,7 +27,7 @@ function getPlaces() {
        var latitude = data.coord.lat;
        var longitude = data.coord.lon;
        console.log(latitude, longitude);
-       getAmadeusPlacesOfInterest(latitude, longitude);
+       return getAmadeusPlacesOfInterest(latitude, longitude);
     })
     .catch(function(error) {
       alert('City details could not be retrieved');
@@ -31,18 +35,24 @@ function getPlaces() {
     });
 }
 
-function getAmadeusPlacesOfInterest(lat, long) {
-    var url = AMADEUS_POI_URL.replace("{latitude}", lat).replace("{longitude}", long);
-    console.log(url);
-    fetch(url, {headers: {
-        Authorization: 'Bearer ' +  AMADEUS_API_KEY
-    }})
+function getAmadeusPlacesOfInterest(lat, long) { 
+    var placesOfInterest = [];
+    getAmadeusToken()
+    .then((resp) => resp.json())
+    .then(function(response) {
+      var url = AMADEUS_POI_URL.replace("{latitude}", lat).replace("{longitude}", long);
+      return fetch(url, {headers: {
+        Authorization: 'Bearer ' +  response.access_token
+        }})
+     }) 
     .then((resp) => resp.json())
     .then(function(response) {
        console.log(response.data);
        response.data.forEach(element => {
-           getFlickrImages(element.geoCode.latitude, element.geoCode.longitude);
+           var photos = getFlickrImages(element.geoCode.latitude, element.geoCode.longitude);
+           placesOfInterest.push[createPlaceOfInterest(element, photos)];
        });
+       return placesOfInterest;
     })
     .catch(function(error) {
       alert('City details could not be retrieved');
@@ -52,13 +62,43 @@ function getAmadeusPlacesOfInterest(lat, long) {
 
 function getFlickrImages(lat, lon) {
     var url = FLICKR_API_URL.replace("{latitude}", lat).replace("{longitude}", lon);
+    var images = [];
     console.log(url);
     fetch(url)
     .then((resp) => resp.json())
     .then(function(response) {
-       console.log(response);
+       response.photos.photo.forEach((photo) => images.push(createFlickrImageUrl(photo)));
+       return images;
     })
     .catch(function(error) {
       console.log(error);
     });
+}
+
+function getAmadeusToken() {
+  var url = AMADEUS_TOKEN_URL;
+  var bodyText = "grant_type=client_credentials&client_id=" + AMADEUS_CLIENT_ID + "&client_secret=" + AMADEUS_CLIENT_SECRET;
+  return fetch(url, {
+    headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: bodyText,
+    method: 'POST'
+   } 
+  );
+}
+
+function createFlickrImageUrl(photo) {
+  var urlText = "https://live.staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_c.jpg";
+  return {
+    url: urlText,
+    title: photo.title
+  };
+}
+
+function createPlaceOfInterest(poi, images) {
+  return {
+    type: poi.category,
+    photos: images
+  };
 }
