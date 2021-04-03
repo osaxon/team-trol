@@ -91,7 +91,7 @@ function getAmadeusToken() {
 }
 
 function createFlickrImageUrl(photo) {
-  var urlText = "https://live.staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_c.jpg";
+  var urlText = "https://live.staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_b.jpg";
   return {
     url: urlText,
     title: photo.title
