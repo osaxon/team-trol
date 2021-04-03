@@ -34,3 +34,21 @@ console.log("Hello World");
         //Destination image first, cropped user image second
     //Button is displayed to click when user is happy with final image
         //Button click saves final image, making it available to download
+
+
+function loadImage(){
+    var img = new Image();
+    img.onload = drawImg;
+    img.src = URL.createObjectURL(this.files[0]);
+};
+
+function drawImg() {
+    var canvas = document.getElementById('usrImgCanvas')
+    var ctx = canvas.getContext("2d");
+    canvas.width = this.width;
+    canvas.height = this.height;
+    ctx.drawImage(this, 0,0);
+};
+
+
+$('#imgUploader').on("change", loadImage)
