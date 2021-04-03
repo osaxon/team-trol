@@ -14,30 +14,30 @@ const FLICKR_API_URL = 'https://www.flickr.com/services/rest?method=flickr.photo
 
 $("button").click(function() {
     console.log('Here');
-    getPlaces();
-});
+    getPlaces()
+    .then(function(data) {
+        console.log(data);
+        var latitude = data.coord.lat;
+        var longitude = data.coord.lon;
+        getAmadeusPlacesOfInterest(latitude, longitude)
+        .then(function(response) {
+          
+          console.log(response);
+        });
+      });
+ });        
+
 
 function getPlaces() {
     var text = $("input").val();
     var url = OPEN_WEATHER_URL.replace("{city}", text);
     console.log(url);
-    fetch(url)
-    .then((resp) => resp.json())
-    .then(function(data) {
-       var latitude = data.coord.lat;
-       var longitude = data.coord.lon;
-       console.log(latitude, longitude);
-       return getAmadeusPlacesOfInterest(latitude, longitude);
-    })
-    .catch(function(error) {
-      alert('City details could not be retrieved');
-      console.log(error);
-    });
+    return fetch(url)
+    .then((resp) => resp.json());
 }
 
 function getAmadeusPlacesOfInterest(lat, long) { 
-    var placesOfInterest = [];
-    getAmadeusToken()
+    return getAmadeusToken()
     .then((resp) => resp.json())
     .then(function(response) {
       var url = AMADEUS_POI_URL.replace("{latitude}", lat).replace("{longitude}", long);
@@ -45,33 +45,18 @@ function getAmadeusPlacesOfInterest(lat, long) {
         Authorization: 'Bearer ' +  response.access_token
         }})
      }) 
-    .then((resp) => resp.json())
-    .then(function(response) {
-       console.log(response.data);
-       response.data.forEach(element => {
-           var photos = getFlickrImages(element.geoCode.latitude, element.geoCode.longitude);
-           placesOfInterest.push[createPlaceOfInterest(element, photos)];
-       });
-       return placesOfInterest;
-    })
-    .catch(function(error) {
-      alert('City details could not be retrieved');
-      console.log(error);
-    });
+    .then((resp) => resp.json());
 }
 
 function getFlickrImages(lat, lon) {
     var url = FLICKR_API_URL.replace("{latitude}", lat).replace("{longitude}", lon);
     var images = [];
     console.log(url);
-    fetch(url)
+    return fetch(url)
     .then((resp) => resp.json())
     .then(function(response) {
        response.photos.photo.forEach((photo) => images.push(createFlickrImageUrl(photo)));
        return images;
-    })
-    .catch(function(error) {
-      console.log(error);
     });
 }
 
