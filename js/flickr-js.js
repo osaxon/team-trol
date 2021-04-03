@@ -6,23 +6,34 @@ const AMADEUS_API_KEY =  'IqyzmmsnOGa7H8cAlG1k6YqzQTF5';
 const AMADEUS_TOKEN_URL = "https://api.amadeus.com/v1/security/oauth2/token";
 const AMADEUS_CLIENT_ID = 'JOvXUOY3OX69sVGTnojMRj8zUMDLhd04';
 const AMADEUS_CLIENT_SECRET = 'jAceA5FwC0oePI4c';
+const NUMBER_OF_FLICKR_PICTURES = 10;
 
 const FLICKR_API_KEY = 'd21c44465e491207d604a059d71668d6';
 const FLICKR_API_URL = 'https://www.flickr.com/services/rest?method=flickr.photos.search&api_key='
-                       + FLICKR_API_KEY + '&lat={latitude}&lon={longitude}&format=json&safe_search=1&per_page=5&page=1&nojsoncallback=1';
+                       + FLICKR_API_KEY + '&lat={latitude}&lon={longitude}&format=json&safe_search=1&per_page={numberOfFlickerPictures}&page=1&nojsoncallback=1';
 
 
 $("button").click(function() {
-    console.log('Here');
     getPlaces()
     .then(function(data) {
-        console.log(data);
         var latitude = data.coord.lat;
         var longitude = data.coord.lon;
         getAmadeusPlacesOfInterest(latitude, longitude)
         .then(function(response) {
-          
-          console.log(response);
+          poiPromises = [];
+          response.data.forEach((poi) => {
+            poiDetails = {
+              latitude: poi.geoCode.latitude,
+              longitude: poi.geoCode.longitude,
+              category: poi.category,
+              name: poi.name
+            }
+            poiPromises.push(getFlickrImages(poiDetails))
+          });
+         Promise.all(poiPromises)
+         .then(function(response) {
+           console.log(response)
+         });  
         });
       });
  });        
@@ -31,7 +42,6 @@ $("button").click(function() {
 function getPlaces() {
     var text = $("input").val();
     var url = OPEN_WEATHER_URL.replace("{city}", text);
-    console.log(url);
     return fetch(url)
     .then((resp) => resp.json());
 }
@@ -48,15 +58,22 @@ function getAmadeusPlacesOfInterest(lat, long) {
     .then((resp) => resp.json());
 }
 
-function getFlickrImages(lat, lon) {
-    var url = FLICKR_API_URL.replace("{latitude}", lat).replace("{longitude}", lon);
+function getFlickrImages(poiDetails) {
+    var lat = poiDetails.latitude;
+    var lon = poiDetails.longitude;
+    var url = FLICKR_API_URL.replace("{latitude}", lat).replace("{longitude}", lon).replace("{numberOfFlickerPictures}", NUMBER_OF_FLICKR_PICTURES);
     var images = [];
-    console.log(url);
     return fetch(url)
     .then((resp) => resp.json())
     .then(function(response) {
        response.photos.photo.forEach((photo) => images.push(createFlickrImageUrl(photo)));
-       return images;
+       return {
+         name: poiDetails.name,
+         category: poiDetails.category,
+         latitude: poiDetails.latitude,
+         longitude: poiDetails.longitude,
+         photos: images
+       }  
     });
 }
 
