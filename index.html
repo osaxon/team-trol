@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Compressed CSS (Foundation)-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" 
-integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" 
-crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+    integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Wish We Were There</title>
 </head>
@@ -30,30 +31,44 @@ crossorigin="anonymous">
         <div class="grid-x body">
             <div class="small-6 cell">
                 <h5>[high level summary...]</h5>
-                <p><button class="button" data-open="exampleModal1">Let's Shoot!</button></p>
+                <p><button class="button" data-open="modal-1">Let's Shoot!</button></p>
             </div>
             <div class="small-6 cell">
                 <img src="./Assets/Images/WWWT_Camera.png" alt="" size="15%">
             </div>
-            <div class="reveal" id="exampleModal1" data-reveal>
-                <h1>Awesome. I Have It.</h1>
-                <p class="lead">Your couch. It is mine.</p>
-                <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-                <button class="close-button" data-close aria-label="Close modal" type="button">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
         </div>
 
-        <div class="gird-x body">
-            <div class="small-6 cell">
-                <label for="">Choose Image:</label>
-                <input type="file" id="imgUploader">
-            </div>
-            <div class="small-6 cell">
-                <canvas id="usrImgCanvas"></canvas>
-            </div>
-        </div>
+        
+  
+    <div id="modal-1" class="large reveal" data-reveal>
+      <h2>Choose your destination</h2>
+
+      <h4>Search for your location</h4>
+
+      <button class="button" data-open="modal-2">Next</button>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    <div id="modal-2" class="large reveal" data-reveal>
+        <h2>Upload your image</h2>
+        <label for="">Choose Image:</label>
+        <input type="file" id="imgUploader">
+        <button class="button" data-open="modal-3">Next</button>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+
+      <div id="modal-3" class="large reveal" data-reveal>
+        <h2>Here's your composite image</h2>
+        <canvas id="usrImgCanvas"></canvas>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+        
     </main>
     
 
@@ -66,5 +81,9 @@ crossorigin="anonymous">
 integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" 
 crossorigin="anonymous">
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/vendor/what-input.min.js"></script>
 <script src="./script.js"></script>
+<script>$(document).foundation();</script>
 </html>
