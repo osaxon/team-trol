@@ -19,3 +19,16 @@
     background-image: url(./Assets/Images/WWWT_Camera.png);
     background-size: auto;
 }
+
+.button {
+    margin-left: 20px;
+}
+
+.reveal {
+    background-color: #B3e4ca;
+}
+
+.reveal .button {
+    background-color: #ffc8cd;
+    color: black
+}
