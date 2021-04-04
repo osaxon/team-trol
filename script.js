@@ -1,5 +1,9 @@
 console.log("Hello World");
 
+const CITIES_URL = "https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json";
+const COUNTRIES_URL = "https://pkgstore.datahub.io/core/country-list/data_json/data/8c458f2d15d9f2119654b29ede6e45b8/data_json.json";
+const CITIES = [];
+const COUNTRIES = [];
 //Pseudo Code
 
 //Modal 1
@@ -50,5 +54,109 @@ function drawImg() {
     ctx.drawImage(this, 0,0);
 };
 
+function checkLocationChars() {
+    console.log("Here");
+    var text = $("#city_text").val().trim();
+    text = text.replace(/\s+/g, '');
+    if(text.length >= 3) { 
+        var results = findCity(text);
+        constructCityOptions(results);   
+        //nextToPictures();
+    }
+}
 
-$('#imgUploader').on("change", loadImage)
+
+$('#imgUploader').on("change", loadImage);
+$('#city_text').on("keypress", checkLocationChars);
+loadAllCities();
+
+function nextToPictures() {
+    $("#nextToPictures").click();
+}
+
+function loadAllCities() {
+    fetch(COUNTRIES_URL)
+    .then((resp) => resp.json())
+    .then(function(response) {
+        response.forEach((country) => COUNTRIES.push({name: country.Name, code: country.Code}));
+        fetch(CITIES_URL)
+        .then((resp) => resp.json())
+        .then(function(response) {
+            response.forEach((city) => CITIES.push({city: city.name, country: city.country, countryCode: findCountryCode(city.country)}));               
+        })
+    })    
+}
+
+
+function findCity(text) {
+    const opt = {
+        distance: 0,
+        threshold: 0,
+        keys: ['city', 'country']
+    };
+    const fuse = new Fuse(CITIES, opt)
+    const result = fuse.search(text);
+    return result;  
+}
+
+function findCountryCode(text) {
+    var country = COUNTRIES.find(x => x.name.trim().toLowerCase() === text.trim().toLowerCase());
+    return country ? country.code : '';
+}
+
+function constructCityOptions(cities) {
+    console.log(cities);
+    if (cities.length > 0) {
+        var text = "";
+        cities.forEach((x) => text += "<option value='" + x.item.countryCode + "-" + x.item.city + "'>" + x.item.city + ", " + x.item.country + "</option>");
+        $(".city-list > select").html(text);
+        setCityOptionDisplay(true); 
+    } else {
+        setCityOptionDisplay(false);
+    }
+    
+}
+
+function setCityOptionDisplay(flag) {
+    const text = flag ? 'flex' : 'none';
+    $(".city-list > select").css('display', text);
+}
+
+function getMyPlaces(evt) {
+    var selectedCity =  $(".city-list > select").val();
+    var tokens = selectedCity.split("-");
+    var cityName = tokens[1];
+    findMyPointsOfInterest(cityName, (resp) => {
+        var text = constructPoiListText(resp, cityName);
+        $("#modal-2").html(text);
+    });
+}
+
+function constructPicture(photo) {
+    return "<div class='picture'>"
+           +  "<img src='" + photo.url + "'>"
+           +"</div>";
+}
+
+function constructPictures(photos) {
+    var text = "<div class='picture-rows'>"
+                + "<div class='pictures'>";
+    photos.forEach((photo) => text += constructPicture(photo));
+    text += "</div></div>";    
+    return text;
+}
+
+function constructPoiText(poi) {
+    return  "<div class='poi-row'>"
+               + "<label>" + poi.name + "</label>"
+               + constructPictures(poi.photos)
+            + "</div>";
+}
+
+function constructPoiListText(pois, cityName) {    
+    var text =  "<h2>Points of Interests - " + cityName + "</h2>";
+                + "<div class='poi-container'>";
+    pois.forEach((poi) => text += constructPoiText(poi));
+    text += "</div>";
+    return text;            
+}

@@ -4,6 +4,7 @@
     --light-blue: #c6e2ff;
     --pink: #ffc8cd;
     --yellow: #f4d862;
+    --white: #fff
 }
 
 .title-bar {
@@ -20,10 +21,6 @@
     background-size: auto;
 }
 
-.button {
-    margin-left: 20px;
-}
-
 .reveal {
     background-color: #B3e4ca;
 }
@@ -31,4 +28,60 @@
 .reveal .button {
     background-color: #ffc8cd;
     color: black
+}
+
+.city-text {
+    width: 30%;   
+    margin-left: 10px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.city-text input {    
+    border-radius: 7px;
+    border-width: 1px;
+    border-style: solid;
+    width: 100%;
+}
+
+.city-list {
+    display: flex;
+    width: 100%;
+}
+
+.city-list select {    
+   display: none;
+}
+
+.search-section {
+    display: flex;
+}
+
+.poi-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.poi-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.pictures {
+    display: flex;
+    flex-direction: row;
+} 
+
+.picture {
+    width: 17%;
+    padding: 12px 12px 12px 0px;
+}
+
+.picture-rows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
 }

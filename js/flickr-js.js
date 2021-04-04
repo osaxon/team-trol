@@ -13,8 +13,8 @@ const FLICKR_API_URL = 'https://www.flickr.com/services/rest?method=flickr.photo
                        + FLICKR_API_KEY + '&lat={latitude}&lon={longitude}&format=json&safe_search=1&per_page={numberOfFlickerPictures}&page=1&nojsoncallback=1';
 
 
-$("button").click(function() {
-    getPlaces()
+function findMyPointsOfInterest(city, poiCallBackFn) {
+    getPlaces(city)
     .then(function(data) {
         var latitude = data.coord.lat;
         var longitude = data.coord.lon;
@@ -32,15 +32,15 @@ $("button").click(function() {
           });
          Promise.all(poiPromises)
          .then(function(response) {
-           console.log(response)
+           poiCallBackFn(response);
          });  
         });
       });
- });        
+ }        
 
 
-function getPlaces() {
-    var text = $("input").val();
+function getPlaces(city) {
+    var text = city; 
     var url = OPEN_WEATHER_URL.replace("{city}", text);
     return fetch(url)
     .then((resp) => resp.json());
@@ -104,3 +104,4 @@ function createPlaceOfInterest(poi, images) {
     photos: images
   };
 }
+

@@ -43,25 +43,136 @@
     <div id="modal-1" class="large reveal" data-reveal>
       <h2>Choose your destination</h2>
 
-      <h4>Search for your location</h4>
+      <div class="search-section">
+        <h4>Search for your location</h4>
+        <div class="city-text">
+          <input type="text" id="city_text">
+          <div class="city-list">
+            <select name="cities" id="cities" onchange="getMyPlaces(event)">
+            
+            </select>
+         </div>
+        </div>  
+      </div>  
 
-      <button class="button" data-open="modal-2">Next</button>
+      <button class="button" data-open="modal-2" id="nextToPictures">Next</button>
       <button class="close-button" data-close aria-label="Close modal" type="button">
       <span aria-hidden="true">&times;</span>
     </button>
     </div>
 
     <div id="modal-2" class="large reveal" data-reveal>
+      <h2>Points of Interests - Lagos</h2>
+      <div class="poi-container">
+        <div class="poi-row">
+          <label for="">Bar Beach</label>
+          <div class="picture-rows">
+            <div class="pictures">
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+            </div>
+            <div class="pictures">
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <div class="poi-row">
+          <label for="">Bar Beach</label>
+          <div class="picture-rows">
+            <div class="pictures">
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+            </div>
+            <div class="pictures">
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+              <div class="picture">
+                <img src='https://live.staticflickr.com/65535/51079971523_7b565a2edf_b.jpg'>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      
+      <button class="button" data-open="modal-3">Next</button>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    <div id="modal-3" class="large reveal" data-reveal>
         <h2>Upload your image</h2>
         <label for="">Choose Image:</label>
         <input type="file" id="imgUploader">
-        <button class="button" data-open="modal-3">Next</button>
+        <button class="button" data-open="modal-4">Next</button>
         <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
       </div>
 
-      <div id="modal-3" class="large reveal" data-reveal>
+      <div id="modal-4" class="large reveal" data-reveal>
         <h2>Here's your composite image</h2>
         <canvas id="usrImgCanvas"></canvas>
         <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -83,7 +194,9 @@ crossorigin="anonymous">
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/vendor/what-input.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.10/what-input.min.js" integrity="sha512-4snZhaL41OLVJbrysFHLFItNF9pb4zzm/X6ag4srEFALI0Hns+FVZg22G/nofqTGliAyaeWxoTjTZpmbU3enXQ==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
+<script src="./js/flickr-js.js"></script>
 <script src="./script.js"></script>
 <script>$(document).foundation();</script>
 </html>
