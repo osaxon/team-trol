@@ -4,6 +4,7 @@ const CITIES_URL = "https://pkgstore.datahub.io/core/world-cities/world-cities_j
 const COUNTRIES_URL = "https://pkgstore.datahub.io/core/country-list/data_json/data/8c458f2d15d9f2119654b29ede6e45b8/data_json.json";
 const CITIES = [];
 const COUNTRIES = [];
+var DISPLAYED_IMAGES = [];
 //Pseudo Code
 
 //Modal 1
@@ -126,9 +127,14 @@ function getMyPlaces(evt) {
     var selectedCity =  $(".city-list > select").val();
     var tokens = selectedCity.split("-");
     var cityName = tokens[1];
-    findMyPointsOfInterest(cityName, (resp) => {
+    DISPLAYED_IMAGES = [];
+    $(".progress").css("display", "flex");
+    $("#nextToPictures").attr("disabled", true);
+    findMyPointsOfInterest(cityName, (resp) => {    
         var text = constructPoiListText(resp, cityName);
         $("#modal-2").html(text);
+        $(".progress").css("display", "none");
+        $("#nextToPictures").attr("disabled", false);
     });
 }
 
@@ -141,14 +147,24 @@ function constructPicture(photo) {
 function constructPictures(photos) {
     var text = "<div class='picture-rows'>"
                 + "<div class='pictures'>";
-    photos.forEach((photo) => text += constructPicture(photo));
+    var photoCount = 0;
+    var index = 0;
+    while(index < photos.length && photoCount <= 10)  {
+        var photo = photos[index];
+        if (!DISPLAYED_IMAGES.find((x) => x === photo.url)) {
+            text += constructPicture(photo);
+            DISPLAYED_IMAGES.push(photo.url);
+            photoCount++;
+        }
+        index++;
+    }
     text += "</div></div>";    
     return text;
 }
 
 function constructPoiText(poi) {
     return  "<div class='poi-row'>"
-               + "<label>" + poi.name + "</label>"
+               + "<label class='poi-name'>" + poi.name + "</label>"
                + constructPictures(poi.photos)
             + "</div>";
 }

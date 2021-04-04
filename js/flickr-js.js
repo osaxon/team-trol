@@ -6,7 +6,7 @@ const AMADEUS_API_KEY =  'IqyzmmsnOGa7H8cAlG1k6YqzQTF5';
 const AMADEUS_TOKEN_URL = "https://api.amadeus.com/v1/security/oauth2/token";
 const AMADEUS_CLIENT_ID = 'JOvXUOY3OX69sVGTnojMRj8zUMDLhd04';
 const AMADEUS_CLIENT_SECRET = 'jAceA5FwC0oePI4c';
-const NUMBER_OF_FLICKR_PICTURES = 10;
+const NUMBER_OF_FLICKR_PICTURES = 100;
 
 const FLICKR_API_KEY = 'd21c44465e491207d604a059d71668d6';
 const FLICKR_API_URL = 'https://www.flickr.com/services/rest?method=flickr.photos.search&api_key='
@@ -91,7 +91,7 @@ function getAmadeusToken() {
 }
 
 function createFlickrImageUrl(photo) {
-  var urlText = "https://live.staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_b.jpg";
+  var urlText = "https://live.staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_q.jpg";
   return {
     url: urlText,
     title: photo.title
@@ -103,5 +103,9 @@ function createPlaceOfInterest(poi, images) {
     type: poi.category,
     photos: images
   };
+}
+
+function convertImageUrlToLargeSize(url) {
+  return url.replace("_q.jpg", "_b.jpg");
 }
 
