@@ -65,8 +65,7 @@ function checkLocationChars() {
         var results = findCity(text);
         constructCityOptions(results);
     }
-}
-
+}    
 
 $('#imgUploader').on("change", loadImage);
 $('#city_text').on("keypress", checkLocationChars);
