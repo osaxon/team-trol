@@ -138,6 +138,10 @@
     background-color: var(--light-blue);
 }
 
+.sidebar {
+    background-color: var(--light-blue);
+}
+
 .contact-info {
     background-color: var(--yellow);
 }
@@ -146,3 +150,4 @@
     border-radius: 50%;
     height: 30%;
 }
+
