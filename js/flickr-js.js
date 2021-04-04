@@ -1,5 +1,5 @@
-const OPEN_WEATHER_API_KEY = '8cd65c28a9fdcddbfb9c20132db7a158';
-const OPEN_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=' + OPEN_WEATHER_API_KEY;
+const GEOCODE_API_KEY = '316422980633679378271x33089';
+const GEOCODE_URL = 'https://geocode.xyz/{city}?region={countryCode}&auth=' + GEOCODE_API_KEY + "&json=1";
 
 const AMADEUS_POI_URL = 'https://api.amadeus.com/v1/reference-data/locations/pois?latitude={latitude}&longitude={longitude}&radius=1&page%5Blimit%5D=10&page%5Boffset%5D=0';
 const AMADEUS_API_KEY =  'IqyzmmsnOGa7H8cAlG1k6YqzQTF5';
@@ -12,12 +12,16 @@ const FLICKR_API_KEY = 'd21c44465e491207d604a059d71668d6';
 const FLICKR_API_URL = 'https://www.flickr.com/services/rest?method=flickr.photos.search&api_key='
                        + FLICKR_API_KEY + '&lat={latitude}&lon={longitude}&format=json&safe_search=1&per_page={numberOfFlickerPictures}&page=1&nojsoncallback=1';
 
-
-function findMyPointsOfInterest(city, poiCallBackFn) {
-    getPlaces(city)
+// Locates points of interest
+// city - City name
+// countryCode - 2 letter country code
+// call back function for ok response
+// call back function for error response
+function findMyPointsOfInterest(city, countryCode, poiCallBackFn, poiErrorCallBackFn) {
+    getPlaces(city, countryCode)
     .then(function(data) {
-        var latitude = data.coord.lat;
-        var longitude = data.coord.lon;
+        var latitude = data.latt;
+        var longitude = data.longt;
         getAmadeusPlacesOfInterest(latitude, longitude)
         .then(function(response) {
           poiPromises = [];
@@ -35,17 +39,22 @@ function findMyPointsOfInterest(city, poiCallBackFn) {
            poiCallBackFn(response);
          });  
         });
+      }) .catch(function(error) {
+          poiErrorCallBackFn(error);
       });
  }        
 
-
-function getPlaces(city) {
+// Returns a Promise for fetching city
+function getPlaces(city, countryCode) {
     var text = city; 
-    var url = OPEN_WEATHER_URL.replace("{city}", text);
+    var url = GEOCODE_URL.replace("{city}", text).replace("{countryCode}", countryCode);
     return fetch(url)
     .then((resp) => resp.json());
 }
 
+// Returns a Promise for fetching amadeus places of interest
+// lat - latitude
+// long - longitude
 function getAmadeusPlacesOfInterest(lat, long) { 
     return getAmadeusToken()
     .then((resp) => resp.json())
@@ -58,6 +67,7 @@ function getAmadeusPlacesOfInterest(lat, long) {
     .then((resp) => resp.json());
 }
 
+// Returns a Promise for retrieving flickr images
 function getFlickrImages(poiDetails) {
     var lat = poiDetails.latitude;
     var lon = poiDetails.longitude;
@@ -77,6 +87,7 @@ function getFlickrImages(poiDetails) {
     });
 }
 
+// Retrieves amadeus api token
 function getAmadeusToken() {
   var url = AMADEUS_TOKEN_URL;
   var bodyText = "grant_type=client_credentials&client_id=" + AMADEUS_CLIENT_ID + "&client_secret=" + AMADEUS_CLIENT_SECRET;
@@ -90,6 +101,7 @@ function getAmadeusToken() {
   );
 }
 
+// Construct flickr image url
 function createFlickrImageUrl(photo) {
   var urlText = "https://live.staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_q.jpg";
   return {
@@ -98,6 +110,7 @@ function createFlickrImageUrl(photo) {
   };
 }
 
+// Create an object representation of poi with photos
 function createPlaceOfInterest(poi, images) {
   return {
     type: poi.category,
@@ -105,6 +118,7 @@ function createPlaceOfInterest(poi, images) {
   };
 }
 
+// Converts flickr image to large
 function convertImageUrlToLargeSize(url) {
   return url.replace("_q.jpg", "_b.jpg");
 }
