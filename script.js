@@ -244,6 +244,6 @@ function showSelectedImage(url) {
 }
 
 // Returns the url for selected image for further background image manipulation
-// function getSelectedImageUrl() {
-//     return $('.selected-image img').attr('src');
-// }
+function getSelectedImageUrl() {
+    return $('.selected-image img').attr('src');
+}
