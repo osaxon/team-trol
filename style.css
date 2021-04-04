@@ -8,7 +8,7 @@
 }
 
 .title-bar {
-    background-color: var(--primary-green);
+    background-color: var(--pink);
 }
 
 .body {
@@ -135,4 +135,16 @@
    width: 20%; 
 }
 
+.sidebar {
+    background-color: var(--light-blue);
+}
+
+.contact-info {
+    background-color: var(--yellow);
+}
+.card-divider {
+    border: black;
+    border-radius: 50%;
+    height: 30%;
+}
 

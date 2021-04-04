@@ -67,7 +67,6 @@ function checkLocationChars() {
     }
 }
 
-
 $('#imgUploader').on("change", loadImage);
 $('#city_text').on("keypress", checkLocationChars);
 loadAllCities();
