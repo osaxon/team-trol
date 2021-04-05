@@ -4,6 +4,7 @@
     --light-blue: #c6e2ff;
     --pink: #ffc8cd;
     --yellow: #f4d862;
+    --white: #fff
 }
 
 .title-bar {
@@ -32,10 +33,6 @@ h1, h2, h3, h4 {
     background-size: auto;
 }
 
-.button {
-    margin-left: 20px;
-}
-
 .reveal {
     background-color: #B3e4ca;
 }
@@ -43,6 +40,114 @@ h1, h2, h3, h4 {
 .reveal .button {
     background-color: #ffc8cd;
     color: black
+}
+
+.city-text {
+    width: 40%;   
+    margin-left: 10px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.city-text input {    
+    border-radius: 7px;
+    border-width: 1px;
+    border-style: solid;
+    width: 100%;
+}
+
+.city-list {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.city-select select {    
+   display: none;
+   width: 80%;
+}
+
+.search-section {
+    display: flex;
+}
+
+.poi-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.poi-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.pictures {
+    display: flex;
+    flex-direction: row;
+} 
+
+.picture {
+    width: 17%;
+    padding: 12px 12px 12px 0px;
+    height: 140px;
+}
+
+.picture img {
+    height: 100%;
+}
+
+.picture-rows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.progress {
+    background-color: transparent;
+    display: none;
+    font-size: 12px;
+}
+
+.wait{
+    margin-left: 12px;
+}
+
+.poi-name {
+    font-weight: 900;
+}
+
+.selected-image {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.previous {
+    float: right;
+    margin-right: 2px;
+}
+
+.message {
+    display: none;
+    font-size: 12px
+}
+
+.cities-select {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.find {
+   margin-left: 10px;   
+   width: 20%; 
+}
+.sidebar {
+    background-color: var(--light-blue);
 }
 
 .sidebar {

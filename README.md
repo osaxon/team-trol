@@ -4,12 +4,15 @@ For this project we will develop an app which replaces the need to travel to exo
 
 ## User Story
 
+```
 AS A holidaymaker who hasn't been able to travel this year
 I WANT a way of creating an image of myself in one of my favourite destinations
 SO THAT I can share with friends and family 
+```
 
 ## Acceptance Criteria
 
+```
 GIVEN I’m on a image creation site
 WHEN I search for a destination
 THEN I’m given some options to select an image
@@ -17,6 +20,7 @@ WHEN I upload an image of myself
 THEN the background is removed from my image
 WHEN I select create
 THEN my image is overlaid on the selected destination image to create a composite image I am able to dowload and share
+```
 
 ## Technology Used 
 
