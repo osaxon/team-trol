@@ -246,3 +246,34 @@ function showSelectedImage(url) {
 function getSelectedImageUrl() {
     return $('.selected-image img').attr('src');
 }
+
+
+//Function to remove background for uploaded image
+function removeBackground() {
+    var API_KEY = "9c8057038dmsh60c7edf2f2e2a75p109df1jsnae560dc057db"
+    var formData = new FormData();
+    var fileField = document.querySelector("#imgUploader");
+    formData.append('file', fileField.files[0]);
+    
+    fetch("https://image-background-removal-v2.p.rapidapi.com/v1.0/transparent-net?", {
+	"method": "POST",
+	"headers": {
+		"x-rapidapi-key": API_KEY,
+		"x-rapidapi-host": "image-background-removal-v2.p.rapidapi.com"
+	},
+	"body": formData
+
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(response => {
+        var image = response.result;
+        console.log(image);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+document.querySelector("#imgUploader").addEventListener("change", removeBackground)
