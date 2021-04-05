@@ -9,6 +9,18 @@
 
 .title-bar {
     background-color: var(--pink);
+    font-family: industry-inc-base, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+}
+
+h1, h2, h3, h4 {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: industry-inc-in-n-out, sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .body {
@@ -151,3 +163,8 @@
     height: 30%;
 }
 
+#about-copy {
+    font-family: basic-sans,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
