@@ -42,20 +42,6 @@ var POI_LIST = [];
         //Button click saves final image, making it available to download
 
 
-function loadImage(){
-    var img = new Image();
-    img.onload = drawImg;
-    img.src = URL.createObjectURL(this.files[0]);
-};
-
-function drawImg() {
-    var canvas = document.getElementById('usrImgCanvas')
-    var ctx = canvas.getContext("2d");
-    canvas.width = this.width;
-    canvas.height = this.height;
-    ctx.drawImage(this, 0,0);
-};
-
 // Check if the user has entered 3 characters in the location text input box
 function checkLocationChars() {
     console.log("Here");
@@ -67,7 +53,6 @@ function checkLocationChars() {
     }
 }    
 
-$('#imgUploader').on("change", loadImage);
 $('#city_text').on("keypress", checkLocationChars);
 loadAllCities();
 $('#modal-1').on('open.zf.reveal', function() {
@@ -247,6 +232,11 @@ function getSelectedImageUrl() {
     return $('.selected-image img').attr('src');
 }
 
+//Modal 2, upload and remove image background
+function loadImage(){
+    var img = document.querySelector('#imgUpload');
+    img.src = URL.createObjectURL(this.files[0]);
+};
 
 //Function to remove background for uploaded image
 function removeBackground() {
@@ -268,12 +258,33 @@ function removeBackground() {
         return response.json();
     })
     .then(response => {
-        var image = response.result;
-        console.log(image);
+        var cutout = response.result;
+        console.log(cutout);
+        displayCutout(cutout);
+
     })
     .catch(err => {
         console.error(err);
     });
 }
 
-document.querySelector("#imgUploader").addEventListener("change", removeBackground)
+function displayCutout(cutout) {
+    document.querySelector('#imgUpload').setAttribute('src', cutout);
+}
+
+$('#imgUploader').on("change", loadImage);
+document.querySelector("#background-remover").addEventListener("click", removeBackground);
+
+// function loadImage(){
+//     var img = new Image();
+//     img.onload = drawImg;
+//     img.src = URL.createObjectURL(this.files[0]);
+// };
+
+// function drawImg() {
+//     var imgUploadCanvas = document.getElementById('imgUploadCanvas')
+//     var ctx = imgUploadCanvas.getContext("2d");
+//     imgUploadCanvas.width = this.width;
+//     imgUploadCanvas.height = this.height;
+//     ctx.drawImage(this, 0,0);
+// };
