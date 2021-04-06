@@ -29,80 +29,82 @@
 
     <!-- Main content area -->
     <main>
-        <div class="grid-x body">
-            <div class="small-6 cell">
-                <h5>[high level summary...]</h5>
-                <p><button class="button" data-open="modal-1">Let's Shoot!</button></p>
-            </div>
-            <div class="small-6 cell">
-                <img src="./Assets/Images/WWWT_Camera.png" alt="" size="15%">
-            </div>
+      <div class="grid-x body">
+        <div class="small-6 cell">
+          <h5>[high level summary...]</h5>
+          <p><button class="button" data-open="modal-1">Let's Shoot!</button></p>
         </div>
+        <div class="small-6 cell">
+          <img src="./Assets/Images/WWWT_Camera.png" alt="" size="15%">
+        </div>
+      </div>
 
         
   
-    <div id="modal-1" class="large reveal" data-reveal>
-      <h2>Choose your destination</h2>
+      <div id="modal-1" class="large reveal" data-reveal>
+        <h2>Choose your destination</h2>
 
-      <div class="search-section">
-        <h4>Search for your location</h4>
-        <div class="city-text">
-          <input type="text" id="city_text" placeholder="Enter a location and press enter">
-          <div class="city-list">
-            <div class="cities-select">
-              <select name="cities" id="cities">
-              
-              </select>
-              <button class="button find" onclick="getMyPlaces(event)" type="button">Find</button>
-            </div>  
-            <span class="progress"><img src='image/progress.gif'> <span class="wait">Please wait</span></Please></span>
-            <span class="message"></span>
-         </div>
-        </div>  
-      </div>  
-
-      <button class="button location" data-open="modal-2">Next</button>
-      <button class="close-button" data-close aria-label="Close modal" type="button">
-          <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-    <div id="modal-2" class="large reveal" data-reveal>
-      <div class="poi-holder">
-          <h2>Points of Interests - Lagos</h2>
-          <div class="poi-container">
-            <div class="poi-row">
-              <label for="">Bar Beach</label>
-              <div class="picture-rows">
-                <div class="pictures">            
-                </div>
+        <div class="search-section">
+          <h4>Search for your location</h4>
+          <div class="city-text">
+            <input type="text" id="city_text" placeholder="Enter a location and press enter">
+            <div class="city-list">
+              <div class="cities-select">
+                <select name="cities" id="cities">
+                
+                </select>
+                <button class="button find" onclick="getMyPlaces(event)" type="button">Find</button>
               </div>  
-            </div>
+              <span class="progress"><img src='image/progress.gif'> <span class="wait">Please wait</span></Please></span>
+              <span class="message"></span>
           </div>
-      </div>      
-      <button class="button" data-open="modal-3" id="moveToSelected">Next</button>
-      <button class="button previous" data-open="modal-1">Previous</button>
-      <button class="close-button" data-close aria-label="Close modal" type="button">
-        <span aria-hidden="true">&times;</span>
-      </button>        
-    </div>
-    <div id="modal-3" class="large reveal" data-reveal>
-      <h2>Your selected Image</h2>
-      <div class="selected-image">
-        
-      </div>      
-      <button class="button" data-open="modal-4">Next</button>
-      <button class="button previous" data-open="modal-2">Previous</button>
-      <button class="close-button" data-close aria-label="Close modal" type="button">
-         <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    
+          </div>  
+        </div>  
 
-    <div id="modal-4" class="large reveal" data-reveal>
+        <button class="button location" data-open="modal-2">Next</button>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div id="modal-2" class="large reveal" data-reveal>
+        <div class="poi-holder">
+            <h2>Points of Interests - Lagos</h2>
+            <div class="poi-container">
+              <div class="poi-row">
+                <label for="">Bar Beach</label>
+                <div class="picture-rows">
+                  <div class="pictures">            
+                  </div>
+                </div>  
+              </div>
+            </div>
+        </div>      
+        <button class="button" data-open="modal-3" id="moveToSelected">Next</button>
+        <button class="button previous" data-open="modal-1">Previous</button>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+      </div>
+      <div id="modal-3" class="large reveal" data-reveal>
+        <h2>Your selected Image</h2>
+        <div class="selected-image">
+          
+        </div>      
+        <button class="button" data-open="modal-4">Next</button>
+        <button class="button previous" data-open="modal-2">Previous</button>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+
+      <div id="modal-4" class="large reveal" data-reveal>
+        <img id="imgUpload">
         <h2>Upload your image</h2>
         <label for="">Choose Image:</label>
         <input type="file" id="imgUploader">
+        <button class="button" id="background-remover">Remove Background</button>
         <button class="button" data-open="modal-5">Next</button>
         <button class="button previous" data-open="modal-3">Previous</button>
         <button class="close-button" data-close aria-label="Close modal" type="button">

@@ -247,6 +247,12 @@ function getSelectedImageUrl() {
 }
 
 
+//Modal 2, upload and remove image background
+function uploadImage(){
+    var img = document.querySelector('#imgUpload');
+    img.src = URL.createObjectURL(this.files[0]);
+};
+
 //Function to remove background for uploaded image
 function removeBackground() {
     var API_KEY = "9c8057038dmsh60c7edf2f2e2a75p109df1jsnae560dc057db"
@@ -267,16 +273,23 @@ function removeBackground() {
         return response.json();
     })
     .then(response => {
-        var image = response.result;
-        console.log(image)
-        loadImages(image);
+        var cutout = response.result;
+        console.log(cutout);
+        displayCutout(cutout);
+
     })
     .catch(err => {
         console.error(err);
     });
 }
 
-document.querySelector("#imgUploader").addEventListener("change", removeBackground)
+function displayCutout(cutout) {
+    document.querySelector('#imgUpload').setAttribute('src', cutout);
+}
+
+$('#imgUploader').on("change", uploadImage);
+document.querySelector("#background-remover").addEventListener("click", removeBackground);
+
 
 $('#city_text').on("keypress", checkLocationChars);
 loadAllCities();
