@@ -41,24 +41,34 @@ var POI_LIST = [];
     //Button is displayed to click when user is happy with final image
         //Button click saves final image, making it available to download
 
+let images = [];
 
-function loadImage(){
+function loadImages(src){
     var img = new Image();
     img.onload = drawImg;
-    img.src = URL.createObjectURL(this.files[0]);
+    img.src = src;
+    images.push(img);
+    return img;
 };
 
+
 function drawImg() {
-    var canvas = document.getElementById('usrImgCanvas')
-    var ctx = canvas.getContext("2d");
-    canvas.width = this.width;
-    canvas.height = this.height;
-    ctx.drawImage(this, 0,0);
+    console.log(images)
+    if(images.length > 1){
+        var canvas = document.getElementById('usrImgCanvas')
+        var ctx = canvas.getContext("2d");
+        canvas.width = this.width;
+        canvas.height = this.height;
+        for(var i = 0; i < images.length; i++){
+            console.log("Drawing image: " + i)
+            ctx.drawImage(images[i], 0,0);
+        }
+        
+    } 
 };
 
 // Check if the user has entered 3 characters in the location text input box
 function checkLocationChars() {
-    console.log("Here");
     var text = $("#city_text").val().trim();
     text = text.replace(/\s+/g, ''); // Replaces all spaces with an empty string
     if(text.length >= 3) { 
@@ -66,17 +76,6 @@ function checkLocationChars() {
         constructCityOptions(results);
     }
 }    
-
-$('#imgUploader').on("change", loadImage);
-$('#city_text').on("keypress", checkLocationChars);
-loadAllCities();
-$('#modal-1').on('open.zf.reveal', function() {
-    $('cities').val('');
-    $('.message').html('');
-    updateLocationModelNext();
-});  
-
-$('.location').prop("disabled", true);
 
 // Move to poi and pictures modal
 function nextToPictures() {
@@ -118,7 +117,6 @@ function findCountryCode(text) {
 
 // Construct options for city select
 function constructCityOptions(cities) {
-    console.log(cities);
     if (cities.length > 0) {
         var text = "";
         cities.forEach((x) => text += "<option value='" + x.item.countryCode + "-" + x.item.city + "'>" + x.item.city + ", " + x.item.country + "</option>");
@@ -235,8 +233,9 @@ function constructPoiListText(pois, cityName) {
 
 // Construct selected image modal image html text
 function showSelectedImage(url) {
-    console.log(url);
     var bigUrl = convertImageUrlToLargeSize(url)
+    loadImages(bigUrl);
+    console.log(bigUrl)
     var text = "<img src='" + bigUrl + "'>";
     $(".selected-image").html(text);
     $("#moveToSelected").click();
@@ -269,7 +268,8 @@ function removeBackground() {
     })
     .then(response => {
         var image = response.result;
-        console.log(image);
+        console.log(image)
+        loadImages(image);
     })
     .catch(err => {
         console.error(err);
@@ -277,3 +277,13 @@ function removeBackground() {
 }
 
 document.querySelector("#imgUploader").addEventListener("change", removeBackground)
+
+$('#city_text').on("keypress", checkLocationChars);
+loadAllCities();
+$('#modal-1').on('open.zf.reveal', function() {
+    $('cities').val('');
+    $('.message').html('');
+    updateLocationModelNext();
+});  
+
+$('.location').prop("disabled", true);
