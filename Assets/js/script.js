@@ -92,8 +92,8 @@ function setCityOptionDisplay(flag) {
 }
 
 // Retrieves points of interest
-function getMyPlaces(evt) {
-    var selectedCity =  $(".cities-select > select").val();
+function getMyPlaces(evt, prevSearch) {
+    var selectedCity = prevSearch || $(".cities-select > select").val();
     saveSearch(selectedCity);
     if (!validateSelectedCity(selectedCity)) {
         return;
@@ -279,10 +279,27 @@ function drawImg() {
     }    
 };
 
+function renderSearches(event){
+    $('.prev-searches').empty();
+    searches.forEach(function(element){
+        let newLI = $('<li>');
+        newLI.text(element)
+        newLI.addClass('prev-search');
+        newLI.attr('data-name',element)
+        $('.prev-searches').append(newLI);
+    })
+}
 
 $('#imgUploader').on("change", uploadImage);
 document.querySelector("#background-remover").addEventListener("click", removeBackground);
 
+$('.lets-shoot').on('click',renderSearches);
+
+$('.prev-searches').on('click',function(event){
+    var dataName = event.target.getAttribute('data-name');
+    console.log(dataName)
+    getMyPlaces(event, dataName)
+});
 
 $('#city_text').on("keypress", checkLocationChars);
 loadAllCities();
