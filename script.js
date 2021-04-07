@@ -44,6 +44,7 @@ var POI_LIST = [];
 let images = [];
 let MAX_WIDTH = 500;
 let MAX_HEIGTH = 500;
+let searches = JSON.parse(localStorage.getItem('searches')) || [];
 
 function loadImages(src){
     var img = new Image();
@@ -122,6 +123,21 @@ function findCity(text) {
     return result;  
 }
 
+function saveSearch(arg) {
+    if(searches.indexOf(arg) === -1){
+        searches.push(arg);
+        localStorage.setItem("searches",JSON.stringify(searches));
+    } else if(searches.indexOf(arg) > -1){
+        return;
+    }
+    searches.sort();
+    if(searches.length > 5){
+        searches.split(4);
+        return;
+    }
+    //renderSearches
+}
+
 // Locates equivalent country code from countries list
 function findCountryCode(text) {
     var country = COUNTRIES.find(x => x.name.trim().toLowerCase() === text.trim().toLowerCase());
@@ -150,6 +166,7 @@ function setCityOptionDisplay(flag) {
 // Retrieves points of interest
 function getMyPlaces(evt) {
     var selectedCity =  $(".cities-select > select").val();
+    saveSearch(selectedCity);
     if (!validateSelectedCity(selectedCity)) {
         return;
     }
