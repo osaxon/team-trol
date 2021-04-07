@@ -41,24 +41,47 @@ var POI_LIST = [];
     //Button is displayed to click when user is happy with final image
         //Button click saves final image, making it available to download
 
+let images = [];
+let MAX_WIDTH = 500;
+let MAX_HEIGTH = 500;
 
-function loadImage(){
+function loadImages(src){
     var img = new Image();
     img.onload = drawImg;
-    img.src = URL.createObjectURL(this.files[0]);
+    img.src = src;
+    images.push(img);
 };
 
+
 function drawImg() {
-    var canvas = document.getElementById('usrImgCanvas')
-    var ctx = canvas.getContext("2d");
-    canvas.width = this.width;
-    canvas.height = this.height;
-    ctx.drawImage(this, 0,0);
+    let width = this.width;
+    let height = this.height;
+    if (width > height) {
+        if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+        }
+    } else {
+        if (height > MAX_HEIGTH) {
+            width *= MAX_HEIGTH / height;
+            height = MAX_HEIGTH;
+        }
+    };
+    if(images.length > 1) {
+        var canvas = document.getElementById('usrImgCanvas')
+        canvas.width = width
+        canvas.height = height;
+        var ctx = canvas.getContext("2d");
+        for(var i = 0; i < images.length; i++){
+            console.log("Drawing image: " + i)
+            ctx.drawImage(images[i],0,0, width, height);
+        }
+    }    
 };
+
 
 // Check if the user has entered 3 characters in the location text input box
 function checkLocationChars() {
-    console.log("Here");
     var text = $("#city_text").val().trim();
     text = text.replace(/\s+/g, ''); // Replaces all spaces with an empty string
     if(text.length >= 3) { 
@@ -66,17 +89,6 @@ function checkLocationChars() {
         constructCityOptions(results);
     }
 }    
-
-$('#imgUploader').on("change", loadImage);
-$('#city_text').on("keypress", checkLocationChars);
-loadAllCities();
-$('#modal-1').on('open.zf.reveal', function() {
-    $('cities').val('');
-    $('.message').html('');
-    updateLocationModelNext();
-});  
-
-$('.location').prop("disabled", true);
 
 // Move to poi and pictures modal
 function nextToPictures() {
@@ -118,7 +130,6 @@ function findCountryCode(text) {
 
 // Construct options for city select
 function constructCityOptions(cities) {
-    console.log(cities);
     if (cities.length > 0) {
         var text = "";
         cities.forEach((x) => text += "<option value='" + x.item.countryCode + "-" + x.item.city + "'>" + x.item.city + ", " + x.item.country + "</option>");
@@ -235,8 +246,9 @@ function constructPoiListText(pois, cityName) {
 
 // Construct selected image modal image html text
 function showSelectedImage(url) {
-    console.log(url);
     var bigUrl = convertImageUrlToLargeSize(url)
+    loadImages(bigUrl);
+    console.log(bigUrl)
     var text = "<img src='" + bigUrl + "'>";
     $(".selected-image").html(text);
     $("#moveToSelected").click();
@@ -246,3 +258,58 @@ function showSelectedImage(url) {
 function getSelectedImageUrl() {
     return $('.selected-image img').attr('src');
 }
+
+
+//Modal 2, upload and remove image background
+function uploadImage(){
+    var img = document.querySelector('#imgUpload');
+    img.src = URL.createObjectURL(this.files[0]);
+};
+
+//Function to remove background for uploaded image
+function removeBackground() {
+    var API_KEY = "9c8057038dmsh60c7edf2f2e2a75p109df1jsnae560dc057db"
+    var formData = new FormData();
+    var fileField = document.querySelector("#imgUploader");
+    formData.append('file', fileField.files[0]);
+    
+    fetch("https://image-background-removal-v2.p.rapidapi.com/v1.0/transparent-net?", {
+	"method": "POST",
+	"headers": {
+		"x-rapidapi-key": API_KEY,
+		"x-rapidapi-host": "image-background-removal-v2.p.rapidapi.com"
+	},
+	"body": formData
+
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(response => {
+        var cutout = response.result;
+        console.log(cutout);
+        displayCutout(cutout);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+function displayCutout(cutout) {
+    document.querySelector('#imgUpload').setAttribute('src', cutout);
+    loadImages(cutout);
+}
+
+$('#imgUploader').on("change", uploadImage);
+document.querySelector("#background-remover").addEventListener("click", removeBackground);
+
+
+$('#city_text').on("keypress", checkLocationChars);
+loadAllCities();
+$('#modal-1').on('open.zf.reveal', function() {
+    $('cities').val('');
+    $('.message').html('');
+    updateLocationModelNext();
+});  
+
+$('.location').prop("disabled", true);

@@ -14,43 +14,106 @@
 </head>
 <body>
 
-    <header class="header" data-sticky-container>
-        <div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%" data-top-anchor="1" data-btm-anchor="content:bottom">
-          <div class="title-bar-left">
-              <img src="./Assets/Images/WWWT_Logo.png" alt="" size="2%">
-            </div>
-          <div class="title-bar-right">
-            <a href="./index.html">Home</a>
-          </div>
+    <header class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+        <button class="menu-icon" type="button" data-toggle="example-menu"></button>
+        <div class="title-bar-title">WWWT</div>
+      </header>
+      
+      <div class="top-bar" id="example-menu">
+        <div class="top-bar-left">
         </div>
-    </header>
+        <div class="top-bar-right">
+          <ul class="dropdown menu" data-dropdown-menu id="dropdown-menu">
+            <li><a href="#">Let's Shoot</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
 
     <!-- Main content area -->
     <main>
         <div class="grid-x body">
-            <div class="small-3 cell sidebar">
+            <div>
                 <h2>Contact</h2>
             </div>
-            <div class="grid-x small-9 cell">
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x small-up-1 medium-up-4">
+                  <div class="cell">
+                    <div class="card-image" id="card-1">
+                      <img src="Assets/Images/Avatar_Placeholder.svg">
+                      <div class="card-section">
+                      <h4>Luke Drogan</h4>
+                      <a href="#"><p>Twitter</p></a>
+                      <a href="#"><p>Github</p></a>
+                      <a href="#"><p>LinkedIn</p></a>
+                      <a href="#"><p>Email</p></a>
+                        <p>Add content here.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell">
+                    <div class="card-image" id="card-2">
+                      <img src="Assets/Images/Avatar_Placeholder.svg">
+                      <div class="card-section">
+                        <h4>Oliver Saxon</h4>
+                        <a href="#"><p>Twitter</p></a>
+                        <a href="#"><p>Github</p></a>
+                        <a href="#"><p>LinkedIn</p></a>
+                        <a href="#"><p>Email</p></a>
+                        <p>Add content here.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell">
+                    <div class="card-image" id="card-3">
+                      <img src="Assets/Images/Avatar_Placeholder.svg">
+                      <div class="card-section">
+                        <h4>Temi Lanre-Adewumi</h4>
+                        <a href="#"><p>Twitter</p></a>
+                        <a href="#"><p>Github</p></a>
+                        <a href="#"><p>LinkedIn</p></a>
+                        <a href="#"><p>Email</p></a>
+                        <p>Add content here.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell">
+                    <div class="card-image" id="card-4">
+                      <img src="Assets/Images/Avatar_Placeholder.svg">
+                      <div class="card-section">
+                        <h4>Ross White</h4>
+                        <a href="#"><p>Twitter</p></a>
+                        <a href="#"><p>Github</p></a>
+                        <a href="#"><p>LinkedIn</p></a>
+                        <a href="#"><p>Email</p></a>
+                        <p>Add content here.</p>
+                      </div>
+                    </div>
+                </div>
+            </div>      
+        </main>
+        <footer>
+            <div class="grid-x footer"><p>Made with Love by ...</p></div>
+        </footer>
+            <!-- <div class="grid-x small-9 cell">
                 <div class="small-3 cell card contact-info">
                     <div class="card-divider" style="background-color: var(--primary-green);"></div>
-                    <h4>Luke</h4>
+                    <h4>Luke Drogan</h4>
                 </div>
                 <div class="small-3 cell card contact-info">
                     <div class="card-divider" style="background-color: var(--pink);"></div>
-                    <h4>Oli</h4>
+                    <h4>Oliver Saxon</h4>
                 </div>
                 <div class="small-3 cell card contact-info">
                     <div class="card-divider" style="background-color: var(--primary-light);"></div>
-                    <h4>Temi</h4>
+                    <h4>Temi Lanre-Adewumi</h4>
                 </div>
                 <div class="small-3 cell card contact-info">
                     <div class="card-divider" style="background-color: var(--light-blue);"></div>
-                    <h4>Ross</h4>
+                    <h4>Ross White</h4>
                 </div>             
-            </div>
-        </div>      
-    </main>
+            </div> -->
 
 </body>
 <!-- Compressed JavaScript (Foundation)-->
