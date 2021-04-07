@@ -42,30 +42,43 @@ var POI_LIST = [];
         //Button click saves final image, making it available to download
 
 let images = [];
+let MAX_WIDTH = 500;
+let MAX_HEIGTH = 500;
 
 function loadImages(src){
     var img = new Image();
     img.onload = drawImg;
     img.src = src;
     images.push(img);
-    return img;
 };
 
 
 function drawImg() {
-    console.log(images)
-    if(images.length > 1){
+    let width = this.width;
+    let height = this.height;
+    if (width > height) {
+        if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+        }
+    } else {
+        if (height > MAX_HEIGTH) {
+            width *= MAX_HEIGTH / height;
+            height = MAX_HEIGTH;
+        }
+    };
+    if(images.length > 1) {
         var canvas = document.getElementById('usrImgCanvas')
+        canvas.width = width
+        canvas.height = height;
         var ctx = canvas.getContext("2d");
-        canvas.width = this.width;
-        canvas.height = this.height;
         for(var i = 0; i < images.length; i++){
             console.log("Drawing image: " + i)
-            ctx.drawImage(images[i], 0,0);
+            ctx.drawImage(images[i],0,0, width, height);
         }
-        
-    } 
+    }    
 };
+
 
 // Check if the user has entered 3 characters in the location text input box
 function checkLocationChars() {
@@ -276,7 +289,6 @@ function removeBackground() {
         var cutout = response.result;
         console.log(cutout);
         displayCutout(cutout);
-
     })
     .catch(err => {
         console.error(err);
@@ -285,6 +297,7 @@ function removeBackground() {
 
 function displayCutout(cutout) {
     document.querySelector('#imgUpload').setAttribute('src', cutout);
+    loadImages(cutout);
 }
 
 $('#imgUploader').on("change", uploadImage);
