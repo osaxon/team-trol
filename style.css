@@ -15,12 +15,55 @@
     color: black;
 }
 
-h1, h2, h3, h4 {
+.top-bar {
+    background-color: var(--pink);
+}
+
+.top-bar a {
+    font-family: industry-inc-base, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+    background-color: var(--pink);
+}
+
+#dropdown-menu {
+    background-color: var(--pink);
+    align-items: center;
+}
+
+h1 {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: industry-inc-3D, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2, h3, h4 {
     margin-top: 20px;
     margin-left: 20px;
     font-family: industry-inc-in-n-out, sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+h5 {
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: basic-sans, sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+}
+
+p .button {
+    margin-left: 20px;
+    background-color: #B3e4ca;
+    color: black;
+    font-family: basic-sans, sans-serif;
+    font-weight: 600;
+    font-style: normal; 
+    border-radius: 5px;
+    border: 2px solid black;
 }
 
 .body {
