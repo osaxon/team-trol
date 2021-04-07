@@ -78,6 +78,7 @@ p .button {
 
 .reveal {
     background-color: #B3e4ca;
+    height: 80%;
 }
 
 .reveal .button {
@@ -210,4 +211,30 @@ p .button {
     font-family: basic-sans,sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+#card-1 {
+    background-color: var(--pink);
+}
+
+.card-image h4 {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+#card-2 {
+    background-color: var(--primary-green);
+}
+
+#card-3 {
+    background-color: var(--light-blue);
+}
+
+#card-4 {
+    background-color: var(--primary-light);
+}
+
+.footer {
+    background-color: var(--light-blue);
+    height: 80px;
 }
