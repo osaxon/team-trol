@@ -72,18 +72,22 @@ p .button {
     background-color: var(--yellow);
 }
 
+#main-container {
+    display: flex;
+}
+
 .camera-logo {
     background-image: url(./Assets/Images/WWWT_Camera.png);
     background-size: auto;
 }
 
 .reveal {
-    background-color: #B3e4ca;
+    background-color: var(--light-blue);
     height: 80%;
 }
 
 .reveal .button {
-    background-color: #ffc8cd;
+    background-color: var(--pink);
     color: black
 }
 
