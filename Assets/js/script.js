@@ -1,85 +1,14 @@
-console.log("Hello World");
-
 const CITIES_URL = "https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json";
 const COUNTRIES_URL = "https://pkgstore.datahub.io/core/country-list/data_json/data/8c458f2d15d9f2119654b29ede6e45b8/data_json.json";
 const CITIES = [];
 const COUNTRIES = [];
 var DISPLAYED_IMAGES = [];
 var POI_LIST = [];
-//Pseudo Code
-
-//Modal 1
-//Search input is entered and on button click...
-    //Geocode API is called using the entered destination
-        //Lat and Long are returned, saved as variables
-    //Flickr API is called with returned lat and long as parameters
-        //Pictures are returned (5?) from API call and rendered on page in canvas elements with click listeners for user to select
-            //When user clicks on selected image, it is converted into base64 using canvas.toDataURL(), then saved to localStorage
-        
-//Additional function if time---
-//Amadeus API is called with returned lat and long as parameters
-    //Places of interest around chosen destination are returned
-    //Returned places of interest can be used for the Flickr API call to get more specific images
-
-//Modal 2
-//Upload file button is displayed on modal (input type="file")
-    //When clicked, user has the option to choose .png or .jpg file from their device
-    //When file is chosen it is displayed in canvas element
-//User has button to accept image
-    //Button runs function to call image backround remover API
-        //Image is converted onto base64 using canvas.toDataURL()
-        //Base64 is stored as variable and passed into the APi call as parameter
-        //Api call returns base64 data of new, edited image
-        //Image is displayed in canvas element
-//User has button to accept image and continue
-    //Button saves base64 data for image in localStorage to be used next
-
-//Modal 3
-    //Canvas element is displayed on modal with context of: ctx.globalCompositeOperation = "source-over"
-    //Within the canvas, img elements are filled using base64 data for images saved in localStorage
-        //Destination image first, cropped user image second
-    //Button is displayed to click when user is happy with final image
-        //Button click saves final image, making it available to download
 
 let images = [];
 let MAX_WIDTH = 500;
 let MAX_HEIGTH = 500;
 let searches = JSON.parse(localStorage.getItem('searches')) || [];
-
-function loadImages(src){
-    var img = new Image();
-    img.onload = drawImg;
-    img.src = src;
-    images.push(img);
-};
-
-
-function drawImg() {
-    let width = this.width;
-    let height = this.height;
-    if (width > height) {
-        if (width > MAX_WIDTH) {
-            height *= MAX_WIDTH / width;
-            width = MAX_WIDTH;
-        }
-    } else {
-        if (height > MAX_HEIGTH) {
-            width *= MAX_HEIGTH / height;
-            height = MAX_HEIGTH;
-        }
-    };
-    if(images.length > 1) {
-        var canvas = document.getElementById('usrImgCanvas')
-        canvas.width = width
-        canvas.height = height;
-        var ctx = canvas.getContext("2d");
-        for(var i = 0; i < images.length; i++){
-            console.log("Drawing image: " + i)
-            ctx.drawImage(images[i],0,0, width, height);
-        }
-    }    
-};
-
 
 // Check if the user has entered 3 characters in the location text input box
 function checkLocationChars() {
@@ -109,7 +38,6 @@ function loadAllCities() {
         })
     })    
 }
-
 
 // Fuse fuzzy logic search for a city
 function findCity(text) {
@@ -276,14 +204,13 @@ function getSelectedImageUrl() {
     return $('.selected-image img').attr('src');
 }
 
-
-//Modal 2, upload and remove image background
+//Upload image
 function uploadImage(){
     var img = document.querySelector('#imgUpload');
     img.src = URL.createObjectURL(this.files[0]);
 };
 
-//Function to remove background for uploaded image
+//Remove background of uploaded image
 function removeBackground() {
     var API_KEY = "9c8057038dmsh60c7edf2f2e2a75p109df1jsnae560dc057db"
     var formData = new FormData();
@@ -312,10 +239,46 @@ function removeBackground() {
     });
 }
 
+//Displays cutout image
 function displayCutout(cutout) {
     document.querySelector('#imgUpload').setAttribute('src', cutout);
     loadImages(cutout);
 }
+
+function loadImages(src){
+    var img = new Image();
+    img.onload = drawImg;
+    img.src = src;
+    images.push(img);
+};
+
+//Displays composite image on canvas element
+function drawImg() {
+    let width = this.width;
+    let height = this.height;
+    if (width > height) {
+        if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+        }
+    } else {
+        if (height > MAX_HEIGTH) {
+            width *= MAX_HEIGTH / height;
+            height = MAX_HEIGTH;
+        }
+    };
+    if(images.length > 1) {
+        var canvas = document.getElementById('usrImgCanvas')
+        canvas.width = width
+        canvas.height = height;
+        var ctx = canvas.getContext("2d");
+        for(var i = 0; i < images.length; i++){
+            console.log("Drawing image: " + i)
+            ctx.drawImage(images[i],0,0, width, height);
+        }
+    }    
+};
+
 
 $('#imgUploader').on("change", uploadImage);
 document.querySelector("#background-remover").addEventListener("click", removeBackground);

@@ -9,7 +9,7 @@
     crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
     <link rel="stylesheet" href="https://use.typekit.net/yff8miu.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./Assets/css/style.css">
     <title>Wish We Were There</title>
 </head>
 <body>
@@ -20,10 +20,11 @@
   
   <div class="top-bar" id="example-menu">
     <div class="top-bar-left">
+      <h1>WWWT</h1>
     </div>
     <div class="top-bar-right">
       <ul class="dropdown menu" data-dropdown-menu id="dropdown-menu">
-        <li><a href="#">Let's Shoot</a></li>
+        <li><a href="./index.html">Home</a></li>
         <li><a href="./about.html">About</a></li>
         <li><a href="./contact.html">Contact</a></li>
       </ul>
@@ -31,6 +32,7 @@
   </div>
 
     <!-- Main content area -->
+<<<<<<< HEAD
     <main>
       <div class="grid-x body">
         <div class="small-6 cell small-order-2 medium-order-1">
@@ -40,93 +42,99 @@
         <div class="small-6 cell small-order-1 medium-order-2">
           <img src="./Assets/Images/WWWT_Camera.png" alt="" size="15%">
         </div>
+=======
+  <main>
+    <div class="grid-x body">
+      <div class="small-6 cell small-order-2 medium-order-1">
+        <h5>Create a selfie-postcard <br> from anywhere in the world!</h5>
+        <p><button class="button" data-open="modal-1">Let's Shoot!</button></p>
+>>>>>>> 4b862ef774af3b040fc718b99465b7f0db83d16e
       </div>
+      <div class="small-6 cell small-order-1 medium-order-2">
+        <img src="./Assets/Images/WWWT_Camera.png" alt="" size="15%">
+      </div>
+    </div>
 
-        
-  
-      <div id="modal-1" class="large reveal" data-reveal>
-        <h2>Choose your destination</h2>
-
-        <div class="search-section">
-          <h4>Search for your location</h4>
-          <div class="city-text">
-            <input type="text" id="city_text" placeholder="Enter a location and press enter" autocomplete="off">
-            <div class="city-list">
-              <div class="cities-select">
-                <select name="cities" id="cities">
-                
-                </select>
-                <button class="button find" onclick="getMyPlaces(event)" type="button">Find</button>
-              </div>  
-              <span class="progress"><img src='image/progress.gif'> <span class="wait">Please wait</span></Please></span>
-              <span class="message"></span>
+    <div id="modal-1" class="large reveal" data-reveal>
+      <h2>Choose your destination</h2>
+      <div class="search-section">
+        <h4>Search for your location</h4>
+        <div class="city-text">
+          <input type="text" id="city_text" placeholder="Enter a location and press enter" autocomplete="off">
+          <div class="city-list">
+            <div class="cities-select">
+              <select name="cities" id="cities"></select>
+              <button class="button find" onclick="getMyPlaces(event)" type="button">Find</button>
+            </div>  
+            <span class="progress"><img src='./Assets/Images/progress.gif'> <span class="wait">Please wait</span></Please></span>
+            <span class="message"></span>
           </div>
-          </div>  
         </div>  
+      </div>  
 
-        <button class="button location" data-open="modal-2">Next</button>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      <button class="button location" data-open="modal-2">Next</button>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
 
-      <div id="modal-2" class="large reveal" data-reveal>
-        <div class="poi-holder">
-            <h2>Points of Interests - Lagos</h2>
-            <div class="poi-container">
-              <div class="poi-row">
-                <label for="">Bar Beach</label>
-                <div class="picture-rows">
-                  <div class="pictures">            
-                  </div>
-                </div>  
+    <div id="modal-2" class="large reveal" data-reveal>
+      <div class="poi-holder">
+        <h2>Points of Interests - Lagos</h2>
+        <div class="poi-container">
+          <div class="poi-row">
+            <label for="">Bar Beach</label>
+            <div class="picture-rows">
+              <div class="pictures">            
               </div>
-            </div>
-        </div>      
-        <button class="button" data-open="modal-3" id="moveToSelected">Next</button>
-        <button class="button previous" data-open="modal-1">Previous</button>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-          <span aria-hidden="true">&times;</span>
-        </button>        
-      </div>
-      <div id="modal-3" class="large reveal" data-reveal>
-        <h2>Your selected Image</h2>
-        <div class="selected-image">
-          
-        </div>      
-        <button class="button" data-open="modal-4">Next</button>
-        <button class="button previous" data-open="modal-2">Previous</button>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-
-      <div id="modal-4" class="large reveal" data-reveal>
-        <img id="imgUpload">
-        <h2>Upload your image</h2>
-        <label for="">Choose Image:</label>
-        <input type="file" id="imgUploader">
-        <button class="button" id="background-remover">Remove Background</button>
-        <button class="button" data-open="modal-5">Next</button>
-        <button class="button previous" data-open="modal-3">Previous</button>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
+            </div>  
+          </div>
+        </div>
+      </div>      
+      <button class="button" data-open="modal-3" id="moveToSelected">Next</button>
+      <button class="button previous" data-open="modal-1">Previous</button>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div id="modal-5" class="large reveal" data-reveal>
-        <h2>Here's your composite image</h2>
-        <canvas id="usrImgCanvas"></canvas>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
+      </button>        
+    </div>
+    <div id="modal-3" class="large reveal" data-reveal>
+      <h2>Your selected Image</h2>
+      <div class="selected-image">
+      </div>      
+      <button class="button" data-open="modal-4">Next</button>
+      <button class="button previous" data-open="modal-2">Previous</button>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
-      </div>
-        
-    </main>
+    </div>
     
+    <div id="modal-4" class="large reveal" data-reveal>
+      <img id="imgUpload">
+      <h2>Upload your image</h2>
+      <label for="">Choose Image:</label>
+      <input type="file" id="imgUploader">
+      <button class="button" id="background-remover">Remove Background</button>
+      <button class="button" data-open="modal-5">Next</button>
+      <button class="button previous" data-open="modal-3">Previous</button>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
 
+    <div id="modal-5" class="large reveal" data-reveal>
+      <h2>Here's your composite image</h2>
+      <canvas id="usrImgCanvas"></canvas>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+      
+  </main>
 
+  <footer>
+    <div class="grid-x footer"><p>Made with Love by ...</p></div>
+  </footer>
+    
 
 </body>
 <!-- Compressed JavaScript (Foundation)-->
@@ -139,7 +147,7 @@ crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.2.10/what-input.min.js" integrity="sha512-4snZhaL41OLVJbrysFHLFItNF9pb4zzm/X6ag4srEFALI0Hns+FVZg22G/nofqTGliAyaeWxoTjTZpmbU3enXQ==" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
-<script src="./js/flickr-js.js"></script>
-<script src="./script.js"></script>
+<script src="./Assets/js/flickr-js.js"></script>
+<script src="./Assets/js/script.js"></script>
 <script>$(document).foundation();</script>
 </html>
