@@ -60,10 +60,9 @@ function saveSearch(arg) {
     }
     searches.sort();
     if(searches.length > 5){
-        searches.split(4);
+        searches.slice(4);
         return;
     }
-    //renderSearches
 }
 
 // Locates equivalent country code from countries list
