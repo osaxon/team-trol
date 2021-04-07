@@ -290,7 +290,7 @@ function renderSearches(event){
 }
 
 $('#imgUploader').on("change", uploadImage);
-document.querySelector("#background-remover").addEventListener("click", removeBackground);
+$("#background-remover").on("click", removeBackground);
 
 $('.lets-shoot').on('click',renderSearches);
 
@@ -302,10 +302,15 @@ $('.prev-searches').on('click',function(event){
 
 $('#city_text').on("keypress", checkLocationChars);
 loadAllCities();
+
 $('#modal-1').on('open.zf.reveal', function() {
     $('cities').val('');
     $('.message').html('');
     updateLocationModelNext();
 });  
+
+$('#modal-4').on('open.zf.reveal', function() {
+    $('#imgUpload').removeAttr('src');
+});
 
 $('.location').prop("disabled", true);
