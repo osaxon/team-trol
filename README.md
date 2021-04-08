@@ -51,7 +51,7 @@ Zurb's Foundation CSS framework for the styling and layout of the application
 
 **Image 3**
 
- !![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot3.PNG)
+ ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot3.PNG)
 
 
 
