@@ -13,7 +13,7 @@ SO THAT I can share with friends and family
 ## Acceptance Criteria
 
 ```
-GIVEN I’m on a image creation site
+GIVEN I’m on an image creation site
 WHEN I search for a destination
 THEN I’m given some options to select an image
 WHEN I upload an image of myself
