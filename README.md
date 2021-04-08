@@ -1,6 +1,6 @@
 # Wish We Were There
 
-For this project we developed an app that replaces the need to travel to exotic destinations, which has been lost due to Covid travel restrictions. The app will let the user search for a holiday destination and recreate a holiday photo by overlaying an image of themselves onto the destination image.
+For this project we developed an app that replaces the need to travel to exotic destinations, which has been lost due to Covid travel restrictions. The app will let the user search for a holiday destination and recreate a holiday photo by overlaying an image of themselves onto the destination image. The app is responsive.
 
 ## User Story
 
@@ -22,7 +22,7 @@ WHEN I select create
 THEN my image is overlaid on the selected destination image to create a composite image I am able to dowload and share
 ```
 
-## Technology Used 
+## Technologies Used 
 
 ### HTML5, CSS3, JavaScript, JQuery
 
