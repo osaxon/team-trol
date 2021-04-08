@@ -33,6 +33,60 @@ We will use Zurb's Foundation CSS framework for the styling and layout of the ap
 * For the destination image source we will use the Flickr API, which will return images of the places of interest
 * The Background Remover API by Hotpot.ai, hosted on RapidAPI will be used to remove the background of the user image
 
+## Screenshots
+
+
+**Image 1**  
+
+  ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot1.PNG)
+
+
+**Image 2**
+
+ ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot2.PNG)
+
+**Image 3**
+
+ !![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot3.PNG)
+
+
+
+
+**Image 4**
+
+ ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot4.PNG)
+
+
+
+
+**Image 5**
+
+ ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot5.PNG)
+
+
+
+**Image 6**
+
+ ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot6.PNG)
+
+
+
+**Image 7**
+
+ ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot7.PNG)
+
+
+
+
+
+## Reference
+https://openweathermap.org/
+
+
+## Links on Github
+
+- The home page to the website is available at this link: 
+- The source code repository is available at this link: https://github.com/osaxon/team-trol
 
 
 
