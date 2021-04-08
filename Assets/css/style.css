@@ -74,6 +74,7 @@ p .button {
 
 #main-container {
     display: flex;
+    height: 80%;
 }
 
 .camera-logo {
@@ -225,7 +226,12 @@ p .button {
 
 .card-image h4 {
     margin-right: 5px;
+    margin-top: 2px;
     font-size: 18px;
+}
+
+.card-image {
+    font-size: 12px;
 }
 
 #card-2 {
