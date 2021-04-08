@@ -241,3 +241,9 @@ p .button {
     height: 80px;
 
 }
+
+.prev-searches-ul > li {
+    text-decoration: none;
+    list-style: none;
+    font-family: industry-inc-base, sans-serif;
+}

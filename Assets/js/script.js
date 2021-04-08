@@ -53,16 +53,12 @@ function findCity(text) {
 
 function saveSearch(arg) {
     if(searches.indexOf(arg) === -1){
-        searches.push(arg);
+        searches.unshift(arg);
         localStorage.setItem("searches",JSON.stringify(searches));
     } else if(searches.indexOf(arg) > -1){
         return;
     }
-    searches.sort();
-    if(searches.length > 5){
-        searches.slice(4);
-        return;
-    }
+    return;
 }
 
 // Locates equivalent country code from countries list
@@ -93,7 +89,6 @@ function setCityOptionDisplay(flag) {
 // Retrieves points of interest
 function getMyPlaces(evt, prevSearch) {
     var selectedCity = prevSearch || $(".cities-select > select").val();
-    saveSearch(selectedCity);
     if (!validateSelectedCity(selectedCity)) {
         return;
     }
@@ -111,6 +106,8 @@ function getMyPlaces(evt, prevSearch) {
         $(".message").css("display", "block");
         if (resp.length > 0) {
             $(".message").html("Points of interests found, click Next to continue");
+            saveSearch(selectedCity);
+            renderSearches();
         } else {
             $(".message").html("No Points of interests found, please try again");
         }
@@ -280,13 +277,26 @@ function drawImg() {
 
 function renderSearches(event){
     $('.prev-searches').empty();
-    searches.forEach(function(element){
-        let newLI = $('<li>');
-        newLI.text(element)
-        newLI.addClass('prev-search');
-        newLI.attr('data-name',element)
-        $('.prev-searches').append(newLI);
-    })
+    searches = searches.slice(0,5)
+    console.log(searches.length)
+    if(searches.length > 0){
+        let prevSearchesTitle = $('<h5>');
+        let prevSearchesUL = $('<ul>');
+        prevSearchesUL.addClass('prev-searches-ul');
+        prevSearchesTitle.text("Previous Searches: ");
+        $('.prev-searches').append(prevSearchesTitle);
+        $('.prev-searches').append(prevSearchesUL);
+        searches.forEach(function(element){
+            let newLI = $('<li>');
+            // Remove country code and leading chars
+            let trimmed = element.slice((element.indexOf("-") + 1));
+            newLI.text(trimmed)
+            newLI.addClass('prev-search');
+            newLI.attr('data-name',element)
+            prevSearchesUL.append(newLI);
+        })
+    }
+    
 }
 
 $('#imgUploader').on("change", uploadImage);
