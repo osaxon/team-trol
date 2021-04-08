@@ -1,6 +1,6 @@
 # Wish We Were There
 
-For this project we will develop an app which replaces the need to travel to exotic destinations, which has been lost due to Covid travel restrictions. The app will let the user search for a holiday destination and recreate a holiday photo by overlaying an image of themselves onto the destination image.
+For this project we developed an app that replaces the need to travel to exotic destinations, which has been lost due to Covid travel restrictions. The app will let the user search for a holiday destination and recreate a holiday photo by overlaying an image of themselves onto the destination image.
 
 ## User Story
 
@@ -24,63 +24,76 @@ THEN my image is overlaid on the selected destination image to create a composit
 
 ## Technology Used 
 
+### HTML5, CSS3, JavaScript, JQuery
+
 ### CSS Framework
-We will use Zurb's Foundation CSS framework for the styling and layout of the application
+Zurb's Foundation CSS framework for the styling and layout of the application
+
 
 ### APIs 
-* When searching a location, we will use the GeoCode API to return latitude and longitude
-* Using the lat and long, we will use Amadeus API to return places of interest in the chosen location
-* For the destination image source we will use the Flickr API, which will return images of the places of interest
-* The Background Remover API by Hotpot.ai, hosted on RapidAPI will be used to remove the background of the user image
+* When searching a location, we used the GeoCode API to return latitude and longitude
+* Using the lat and long, we used Amadeus API to return places of interest in the chosen location
+* For the destination image source we used the Flickr API, which will return images of the places of interest
+* The Background Remover API by Hotpot.ai, hosted on RapidAPI was used to remove the background of the user image
+
 
 ## Screenshots
 
 
 **Image 1**  
 
-  ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot1.PNG)
+  ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot1.PNG)
 
 
 **Image 2**
 
- ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot2.PNG)
+ ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot2.PNG)
 
 **Image 3**
 
- !![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot3.PNG)
+ !![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot3.PNG)
 
 
 
 
 **Image 4**
 
- ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot4.PNG)
+ ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot4.PNG)
 
 
 
 
 **Image 5**
 
- ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot5.PNG)
+ ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot5.PNG)
 
 
 
 **Image 6**
 
- ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot6.PNG)
+ ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot6.PNG)
 
 
 
 **Image 7**
 
- ![alt text](https://github.com/TemyTemy/weather-dashboard/blob/master/assets/screenshot7.PNG)
+ ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot7.PNG)
 
 
+**Image 8**
 
+ ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot8.PNG)
+ 
+ 
+ **Image 9**
 
+ ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot9.PNG)
+ 
+ 
+ **Image 10**
 
-## Reference
-https://openweathermap.org/
+ ![alt text](https://github.com/TemyTemy/team-trol/blob/main/Assets/Images/screenshot10.PNG)
+
 
 
 ## Links on Github
