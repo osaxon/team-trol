@@ -33,7 +33,7 @@
 
     <!-- Main content area -->
     <main>
-      <div class="grid-x row body" id="main-container">
+      <div class="grid-x row body main-grid" id="main-container">
         <div class="column small-12 medium-6 cell small-order-2 medium-order-1">
           <div class="grid-y" style="height: 200px">
             <section></section>
@@ -49,9 +49,9 @@
 
     <div id="modal-1" class="large reveal" data-reveal>
       <h2>Choose your destination</h2>
-      <div class="search-section">
+      <div class="search-section" id="search">
         <h4>Search for your location</h4>
-        <div class="city-text">
+        <div class="city-text" id="city-section">
           <input type="text" id="city_text" placeholder="Enter a location and press enter" autocomplete="off">
           <div class="city-list">
             <div class="cities-select">
@@ -109,7 +109,7 @@
       <input type="file" id="imgUploader">
       <button class="button" id="background-remover">Remove Background</button>
       <button class="button" data-open="modal-5">Next</button>
-      <button class="button previous" data-open="modal-3">Previous</button>
+      <button class="button previous" data-open="modal-3" id="previous-selected">Previous</button>
       <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
