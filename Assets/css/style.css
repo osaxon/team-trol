@@ -42,7 +42,7 @@ h1 {
 }
 
 h2, h3, h4 {
-    margin-top: 20px;
+    margin-top: 6px;
     margin-left: 20px;
     font-family: industry-inc-in-n-out, sans-serif;
     font-weight: 400;
@@ -68,13 +68,47 @@ p .button {
 }
 
 .body {
-    height: 100vh;
+    height: 80vh;
     background-color: var(--yellow);
 }
 
-#main-container {
+.search-section {
     display: flex;
-    height: 80%;
+}
+
+@media screen and (max-width: 768px) {
+    .body {
+        height: fit-content; 
+    }
+}
+
+@media screen and (max-width: 322px) {
+    .body {
+        height: 246vh; 
+    }
+
+    #main-container {
+        height: 87vh;
+    }
+
+    #previous-selected {
+        float: left;
+    }   
+}
+
+@media screen and (max-width: 640px) {
+    #search {
+        flex-direction: column;
+    }
+
+    #city-section {
+        width: 98%;
+    }
+}
+
+.main-grid {
+    display: flex;
+    height: 80vh;
 }
 
 .camera-logo {
@@ -117,10 +151,6 @@ p .button {
    width: 80%;
 }
 
-.search-section {
-    display: flex;
-}
-
 .poi-container {
     display: flex;
     flex-direction: column;
@@ -136,10 +166,11 @@ p .button {
 .pictures {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 } 
 
 .picture {
-    width: 17%;
+    /* width: 17%; */
     padding: 12px 12px 12px 0px;
     height: 140px;
 }
