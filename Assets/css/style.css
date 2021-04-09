@@ -284,3 +284,9 @@ p .button {
     justify-content: center;
     align-items: center;
 }
+
+.prev-searches-ul > li {
+    text-decoration: none;
+    list-style: none;
+    font-family: industry-inc-base, sans-serif;
+}
