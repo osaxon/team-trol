@@ -251,8 +251,12 @@ p .button {
     font-style: normal;
 }
 
-#card-1 {
-    background-color: var(--pink);
+.contact-body {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .card-image h4 {
@@ -262,7 +266,14 @@ p .button {
 }
 
 .card-image {
+    margin-top: 50px;
     font-size: 12px;
+    width: auto;
+    height: auto;
+}
+
+#card-1 {
+    background-color: var(--pink);
 }
 
 #card-2 {
