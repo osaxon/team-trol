@@ -82,7 +82,7 @@ p .button {
     }
 }
 
-@media screen and (max-width: 322px) {
+@media screen and (max-width: 376px) {
     .body {
         height: 246vh; 
     }
