@@ -98,7 +98,7 @@ Zurb's Foundation CSS framework for the styling and layout of the application
 
 ## Links on Github
 
-- The home page to the website is available at this link: 
+- The home page to the website is available at this link: https://osaxon.github.io/team-trol/
 - The source code repository is available at this link: https://github.com/osaxon/team-trol
 
 
